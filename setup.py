@@ -1,10 +1,16 @@
-from distutils.core import setup
-setup(
+import setuptools
+
+with open("README.md", "r") as fh:
+    long_description=fh.read()
+    
+setuptools.setup(
     name = 'pygameelements',
     packages = ['pygameelements'],
-    version = '0.1',
+    version = '0.1.1',
     license='MIT',
     description = 'Elements that scale with screensize for pygame',
+    long_description=long_description,
+    long_description_content_type="text/markdown", 
     author = 'Bas Koning',
     author_email = 'basknng@gmail.com',
     url = 'https://github.com/QuetzalQatl/PyGameElements',
@@ -37,6 +43,8 @@ setup(
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
+
+    "Operating System :: OS Independent"
     
     ],
 )
