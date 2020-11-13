@@ -1,12 +1,12 @@
 Metadata-Version: 2.1
 Name: pygameelements
-Version: 0.1.0
+Version: 0.1.5
 Summary: Elements that scale with screensize for pygame
 Home-page: https://github.com/QuetzalQatl/PyGameElements
 Author: Bas Koning
 Author-email: basknng@gmail.com
 License: MIT
-Download-URL: https://github.com/QuetzalQatl/PyGameElements/blob/main/dist/pygameelements-0.1.0.tar.gz
+Download-URL: https://github.com/QuetzalQatl/PyGameElements/blob/main/dist/pygameelements-0.1.5.tar.gz
 Description: # PyGameElements so you dont have to make a gui for pygame every time you write a game
         
         PyGameElements provides you with a way to use elements that scale along with the screen size. 

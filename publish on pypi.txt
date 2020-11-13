@@ -1,0 +1,84 @@
+Publish on PyPi 
+so people can simply install by typing
+pip install PyGameElements
+
+DO ONCE:
+Create account on github.com
+create account on pypi.org 
+
+Create a folder to hold your project
+
+Create a LICENSE.txt file https://github.com/joelbarmettlerUZH/Scrapeasy/blob/master/LICENSE.txt
+and a README.md file like https://github.com/joelbarmettlerUZH/Scrapeasy/blob/master/README.md
+
+You also need a setup.cfg with only this in it:
+[metadata]
+description-file = README.md
+
+Also create and update a setup.py like https://github.com/QuetzalQatl/PyGameElements/blob/main/setup.py
+Make sure to inspect and update each line to fit your situation
+Pay special attention to install_requires, it should name all imports you use in your file, including the file itself
+in my case because I only depend on pygame, its
+install_requires=['pygame','pygameelements',],
+
+Set version info correctly:
+set download_url = 'https://github.com/QuetzalQatl/PyGameElements/blob/main/dist/pygameelements-0.1.2.tar.gz' in the setup.py to the predicted link
+
+inside the folder, create a PyGameElements folder
+inside PyGameElements put your
+PyGameElements.py which has simpleText class in it
+Also create a __init__.py file there (double underscores!), that says something like:
+from PyGameElements.pygameElements import simpleText 
+
+Make sure you have latest wheel and setuptools:
+python -m pip install --user --upgrade setuptools wheel
+
+install twine:
+python -m pip install --user --upgrade twine
+
+create a dist(tribution)
+python setup.py sdist bdist_wheel
+
+Upload all files to github (using github desktop or whatever way you like)
+on github: 
+goto YourAmazingProgramOrLibrary
+select 'releases'
+add release, name it
+V_0.1.1 (or something similar)
+Give it some description
+publish release
+
+upload to PyPi:
+twine upload dist/*
+(give username and password from PyPi registration)
+
+It will give an error for files that are already on PyPi, you can ignore that
+
+Now, everybody in the world can type
+pip install pygameElements
+
+and inside a python program do:
+from pygameElements import simpleText
+
+UPGRADE VERSION ROUTINE:
+
+set the version in setup.py, also update download_url to predicted new location
+create new distribution:
+python setup.py sdist bdist_wheel
+
+upload files to github (using github desktop or similar)
+create new tag on github
+name it v_0.0.0 (with the correct new version)
+
+upload to pypi by running:
+twine upload dist/*
+(give username and password from PyPi registration)
+It will give an error for files that are already on PyPi, you can ignore that
+
+
+
+
+
+
+
+
