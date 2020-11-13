@@ -15,7 +15,8 @@ setuptools.setup(
     author_email = 'basknng@gmail.com',
     url = 'https://github.com/QuetzalQatl/PyGameElements',
     download_url = 'https://github.com/QuetzalQatl/PyGameElements/blob/main/dist/pygameelements-0.1.6.tar.gz',
-    keywords = ['pygame', 'element', 'gui', 'button', 'label', 'text', 'image', 'checkbox', 'radiobutton'],
+    keywords = ['pygame', 'element', 'gui', 'button', 'label', 'text', 'image', 'checkbox', 'inputbox', 'line', 'square', 'ellipse'],
+    
     include_package_data=True,
     install_requires=[
         'pygame',
