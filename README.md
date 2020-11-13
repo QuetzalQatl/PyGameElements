@@ -33,7 +33,7 @@ $ pip install PyGameElements
 ```Python
 import pygame
 import pygameelements
-import testpygameelements
+from testpygameelements import testPygameElements
 testpygameelements()
 ```
 
