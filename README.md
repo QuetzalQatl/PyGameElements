@@ -26,7 +26,7 @@ $ pip install PyGameElements
 import pygame
 import pygameelements
 from testpygameelements import testPygameElements
-testpygameelements()
+testPygameElements()
 ```
 
 To see an example of what you can do with the elements.
