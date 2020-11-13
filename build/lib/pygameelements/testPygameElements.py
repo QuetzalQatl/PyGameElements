@@ -6,7 +6,7 @@ import pygame.scrap as scrap
 
 from pygameElements import Label, InputBox, Square, Ellipse, Image, Line, CheckBox, Button
 
-class MyPygame():
+class testPygameElements():
     def __init__(self, screenWidth=900, screenHeight=600, caption='PygameElement Elements Example', isFullscreen=False, desiredFrameRate=50.0):
         #settings:
         self.renderObjects=[]
@@ -548,5 +548,5 @@ class MyPygame():
                 pygame.time.wait(abs(overtime))
                 
 if __name__=='__main__':
-    mpg=MyPygame()
+    testPygameElements()
     
