@@ -5,17 +5,9 @@ PyGameElements provides you with a way to use elements that scale along with the
 # Overview
 There are several elements available at this moment:
 
-Core elements (consisting of one thing)
-Line
-Square 
-Ellipse
-Label - for displaying a text
-Image - for displaying an image
+Core elements (consisting of one thing): Line, Square, Ellipse, Label, Image
 
-Combined elements (consisting of more then one core elements)
-Button
-CheckBox
-InputBox
+Combined elements (consisting of more then one core elements): Button, CheckBox, InputBox
 
 ## Usage
 
@@ -42,7 +34,7 @@ To see an example of what you can do with the elements.
 Here are the variables you can set with each element along with its defaults:
 
 class Line():
-    def __init__(self,blitToSurface=None, gameState='', name='', color=(255,255,255), startPosPromille=(0,0), endPosPromille=(1000,1000), widthLine=5, alphaValue=255, visible=True):
+    def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255), startPosPromille=(0,0), endPosPromille=(1000,1000), widthLine=5, alphaValue=255, visible=True):
 
 class Square():
     def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255,255), horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=100,  verticalSizePromille=400, widthBorder=0, borderTopLeft=1,borderTopRight=1,borderBottomLeft=1, borderBottomRight=1, alphaValue=255, visible=True):
@@ -63,7 +55,7 @@ class CheckBox():
     def __init__(self, blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, inColor=(190,190,190), outColor=(135,135,135), tickColor=(100,100,100),alphaValue=255, widthMargin=5, widthBorder=5, value=True, hasFocus=False, visible=True, onClick=None):
 
 class InputBox():
-    def __init__(self,blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255),horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman', fontSizePromille=100, isBold=False, isItalic=True, antiAlias=True, alphaValue=255, visible=True, hasFocus=False, onClick=None, maxSize=15):
+    def __init__(self, blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255),horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman', fontSizePromille=100, isBold=False, isItalic=True, antiAlias=True, alphaValue=255, visible=True, hasFocus=False, onClick=None, maxSize=15):
 
 
 License
