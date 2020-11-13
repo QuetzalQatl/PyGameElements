@@ -75,7 +75,7 @@ Description: # PyGameElements so you dont have to make a gui for pygame every ti
         Hire us: basknng@gmail.com
         
         
-Keywords: pygame,element,gui,button,label,text,image,checkbox,radiobutton
+Keywords: pygame,element,gui,button,label,text,image,checkbox,inputbox,line,square,ellipse
 Platform: UNKNOWN
 Classifier: Development Status :: 3 - Alpha
 Classifier: Intended Audience :: Developers
