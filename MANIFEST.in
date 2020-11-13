@@ -1,2 +1,2 @@
-include *.png
-include *.ttf
+include pygameelements\*.png
+include pygameelements\*.ttf
