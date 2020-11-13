@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name = 'pygameelements',
     packages = ['pygameelements'],
-    version = '0.1.5',
+    version = '0.1.6',
     license='MIT',
     description = 'Elements that scale with screensize for pygame',
     long_description=long_description,
@@ -14,8 +14,9 @@ setuptools.setup(
     author = 'Bas Koning',
     author_email = 'basknng@gmail.com',
     url = 'https://github.com/QuetzalQatl/PyGameElements',
-    download_url = 'https://github.com/QuetzalQatl/PyGameElements/blob/main/dist/pygameelements-0.1.5.tar.gz',
+    download_url = 'https://github.com/QuetzalQatl/PyGameElements/blob/main/dist/pygameelements-0.1.6.tar.gz',
     keywords = ['pygame', 'element', 'gui', 'button', 'label', 'text', 'image', 'checkbox', 'radiobutton'],
+    include_package_data=True,
     install_requires=[
         'pygame',
         'pygameelements',

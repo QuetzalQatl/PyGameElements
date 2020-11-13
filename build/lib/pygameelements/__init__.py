@@ -1,1 +1,1 @@
-from PyGameElements.pygameElements import simpleText
+from PyGameElements.pygameElements import Label, InputBox, Square, Ellipse, Image, Line, CheckBox, Button
