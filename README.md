@@ -3,12 +3,19 @@
 PyGameElements provides you with a way to use elements that scale along with the screen size. 
 
 # Overview
-To be done
+There are several elements available at this moment:
 
-  - Bla
-  - Bla
-  - Bla
+Core elements (consisting of one thing)
+Line
+Square 
+Ellipse
+Label - for displaying a text
+Image - for displaying an image
 
+Combined elements (consisting of more then one core elements)
+Button
+CheckBox
+InputBox
 
 ## Usage
 
@@ -23,18 +30,58 @@ $ pip install PyGameElements
 
 ### Using it
 
-PyGameElements was programmed with ease-of-use in mind. First, import simpleText from PyGameElements
-
 ```Python
-from PyGameElements import simpleText
+import pygame
+import pygameelements
+import testpygameelements
+testpygameelements()
 ```
 
-And you are ready to go! 
+To see an example of what you can do with the elements.
 
-Done.
+Here are the variables you can set with each element along with its defaults:
 
+class Line():
+    def __init__(self,blitToSurface=None, gameState='', name='', color=(255,255,255), 
+startPosPromille=(0,0), endPosPromille=(1000,1000), widthLine=5, alphaValue=255, visible=True):
 
+class Square():
+    def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255,255), 
+horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=100,  verticalSizePromille=400, 
+widthBorder=0, borderTopLeft=1,borderTopRight=1,borderBottomLeft=1, borderBottomRight=1, 
+alphaValue=255, visible=True):
 
+class Ellipse():
+    def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255), 
+horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, 
+widthBorder=0, alphaValue=255, visible=True):
+
+class Label():
+    def __init__(self, blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255),
+horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman',
+fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=255, visible=True):
+
+class Image():
+    def __init__(self, blitToSurface=None, gameState='', name='', fileName='', 
+horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, 
+stretch=True, alphaValue=255, visible=True):
+
+class Button():
+    def __init__(self, blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  
+verticalSizePromille=100, colorNormal=(190,190,190), colorHasFocus=(190,255,190),colorMouseOver=(190,190,255),colorMouseDown=(255,190,190), value=None, 
+alphaValue=255, hasFocus=False, visible=True, onClick=None, text='button', enabled=True, sysFont=True, fontName='timesnewroman', fontSizePromille=80, antiAlias=True):
+
+class CheckBox():
+    #self.windowSurface, 'all', 'chkOne', pygame.Color('blue'), 900, 500, 950,550, alphaValue=255, widthMargin=5 , value=False))
+    def __init__(self,blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  
+verticalSizePromille=500, inColor=(190,190,190), outColor=(135,135,135), tickColor=(100,100,100),
+alphaValue=255, widthMargin=5, widthBorder=5, value=True, hasFocus=False, visible=True, onClick=None):
+
+class InputBox():
+    def __init__(self,blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255),
+horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman', 
+fontSizePromille=100, isBold=False, isItalic=True, antiAlias=True, alphaValue=255, visible=True, 
+hasFocus=False, onClick=None, maxSize=15):
 
 
 License
