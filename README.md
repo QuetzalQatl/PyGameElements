@@ -23,13 +23,14 @@ $ pip install PyGameElements
 ### Testing it
 
 ```Python
-import testPygameElements
+from testPyGameElements import testPygameElements
 testPygameElements()
 ```
 
 To see an example of what you can do with the elements.
-You can inspect the file yourself at C:\Users\YOURNAME\AppData\Roaming\Python\YOURPYTHONVERSION\site-packages\pygameelements
+You can inspect the file yourself at C:\Users\YOURNAME\AppData\Roaming\Python\YOURPYTHONVERSION\site-packages\pygameElements
 to see how it works. 
+
 
 ### Using it
 
