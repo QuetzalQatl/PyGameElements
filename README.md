@@ -31,6 +31,8 @@ To see an example of what you can do with the elements.
 You can inspect the file yourself at C:\Users\YOURNAME\AppData\Roaming\Python\YOURPYTHONVERSION\site-packages\pygameElements
 to see how it works. 
 
+![Example Square Element](https://github.com/QuetzalQatl/PyGameElements/blob/main/SquareExamples.png?raw=true)
+
 
 ### Using it
 
