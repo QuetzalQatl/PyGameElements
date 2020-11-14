@@ -20,16 +20,25 @@ To download PyGameElements, either fork this github repo or simply use Pypi via 
 $ pip install PyGameElements
 ```
 
-### Using it
+### Testing it
 
 ```Python
-import pygame
-import pygameelements
-from testpygameelements import testPygameElements
+import testPygameElements
 testPygameElements()
 ```
 
 To see an example of what you can do with the elements.
+You can inspect the file yourself at C:\Users\YOURNAME\AppData\Roaming\Python\YOURPYTHONVERSION\site-packages\pygameelements
+to see how it works. 
+
+### Using it
+
+```Python
+from pygameElements import *
+
+```
+
+
 
 Here are the variables you can set with each element along with its defaults:
 
