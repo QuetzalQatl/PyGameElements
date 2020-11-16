@@ -17,13 +17,13 @@ In the following paragraphs, I am going to describe how you can get and use PyGa
 
 To download PyGameElements, either fork this github repo or simply use Pypi via pip.
 ```sh
-$ pip install PyGameElements
+$ pip install pygameElements
 ```
 
 ### Testing it
 
 ```Python
-from testPyGameElements import testPygameElements
+from testPygameElements import testPygameElements
 testPygameElements()
 ```
 
@@ -49,25 +49,25 @@ class Line():
     def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255), startPosPromille=(0,0), endPosPromille=(1000,1000), widthLine=5, alphaValue=255, visible=True):
 
 class Square():
-    def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255,255), horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=100,  verticalSizePromille=400, widthBorder=0, borderTopLeft=1,borderTopRight=1,borderBottomLeft=1, borderBottomRight=1, alphaValue=255, visible=True):
+    def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255,255), horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=100,  verticalSizePromille=400, widthBorder=0, borderTopLeft=1, borderTopRight=1, borderBottomLeft=1, borderBottomRight=1, alphaValue=255, visible=True):
 
 class Ellipse():
     def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255), horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, widthBorder=0, alphaValue=255, visible=True):
 
 class Label():
-    def __init__(self, blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255),horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman',fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=255, visible=True):
-
+    def __init__(self, blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255), horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman', fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=255, visible=True, rotation=0):
+    
 class Image():
-    def __init__(self, blitToSurface=None, gameState='', name='', fileName='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, stretch=True, alphaValue=255, visible=True):
-
+    def __init__(self, blitToSurface=None, gameState='', name='', fileName='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, rotation=0, stretch=True, alphaValue=255, visible=True):
+    
 class Button():
     def __init__(self, blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=100, colorNormal=(190,190,190), colorHasFocus=(190,255,190),colorMouseOver=(190,190,255),colorMouseDown=(255,190,190), value=None, alphaValue=255, hasFocus=False, visible=True, onClick=None, text='button', enabled=True, sysFont=True, fontName='timesnewroman', fontSizePromille=80, antiAlias=True):
 
 class CheckBox():
-    def __init__(self, blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, inColor=(190,190,190), outColor=(135,135,135), tickColor=(100,100,100),alphaValue=255, widthMargin=5, widthBorder=5, value=True, hasFocus=False, visible=True, onClick=None):
+    def __init__(self, blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, inColor=(190,190,190), outColor=(135,135,135), tickColor=(100,100,100), alphaValue=255, widthMargin=5, widthBorder=5, value=True, hasFocus=False, visible=True, onClick=None):  
 
 class InputBox():
-    def __init__(self, blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255),horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman', fontSizePromille=100, isBold=False, isItalic=True, antiAlias=True, alphaValue=255, visible=True, hasFocus=False, onClick=None, maxSize=15):
+    def __init__(self, blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255), horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman', fontSizePromille=100, isBold=False, isItalic=True, antiAlias=True, alphaValue=255, visible=True, hasFocus=False, onClick=None, maxSize=15):
 
 
 License

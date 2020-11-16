@@ -560,7 +560,7 @@ rotation=0, stretch=True, alphaValue=255, visible=True):
                 self.imageRaw=pygame.image.load(os.path.join('images' , fileName))
             else:
                 parts=os.path.abspath(__file__+"/../..") # take the path this very py file is in now (os dependant!), and drop the last 2 items (the pygameElements name and folder it is in)
-                parts=os.path.join(parts , 'pygameElementsTest') # then, at that place, add the pygameElementsTest folder 
+                parts=os.path.join(parts , 'testPygameElements') # then, at that place, add the testPygameElements folder 
                 folder=os.path.join(parts , 'images') # inside that: there should be a images folder
                 fileLocation=os.path.join(folder , fileName) # adding the filename required, should be the fileLocation
                 if os.path.isdir(folder) and os.path.isfile(fileLocation): # so if that folder exist: and the file exist as well
@@ -826,7 +826,7 @@ fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=2
                     self.basicFont = pygame.font.Font(os.path.join('fonts' , self.fontName), self.fontSize) 
                 else: # well, perhaps its inside the test suite?
                     parts=os.path.abspath(__file__+"/../..") # take the path this very py file is in now (os dependant!), and drop the last 2 items (the pygameElements name and folder it is in)
-                    parts=os.path.join(parts , 'pygameElementsTest') # then, at that place, add the pygameElementsTest folder 
+                    parts=os.path.join(parts , 'testPygameElements') # then, at that place, add the testPygameElements folder 
                     folder=os.path.join(parts , 'fonts') # inside that: there should be a fonts folder
                     fileLocation=os.path.join(folder , self.fontName) # adding the fontName required, should be the fileLocation
                     if os.path.isdir(folder) and os.path.isfile(fileLocation): # so if that folder exist: and the file exist as well
