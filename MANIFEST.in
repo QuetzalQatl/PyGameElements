@@ -1,2 +1,1 @@
-include *.png
-include *.ttf
+recursive-include pygameElementsTest *.png *.ttf *.py

@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 import pygame
 import sys
+import random
+
 from pygame.locals import *
 import pygame.scrap as scrap
+
 
 from pygameElements import Label, InputBox, Square, Ellipse, Image, Line, CheckBox, Button
 
@@ -55,13 +58,15 @@ class testPygameElements():
         self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName7', 'color', pygame.Color('green'), 500, 200))
         self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName8', 'or', pygame.Color('red'), 800, 120, alphaValue=120))
         self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName9', 'alphaValue', pygame.Color('green'), 800, 200, alphaValue=40))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName10', 'can use any system font', pygame.Color('black'), 500, 340, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName11', 'like arial', pygame.Color('black'), 500, 420, fontName='arial', fontSizePromille=80))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName12', 'or couriernew', pygame.Color('black'), 500, 500, fontName='couriernew', fontSizePromille=80))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName13', 'most system fonts also have', pygame.Color('black'), 500, 580, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName14', 'bold text', pygame.Color('black'), 500, 660, isBold=True, fontSizePromille=80))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName15', 'italic text', pygame.Color('black'), 500, 740, isItalic=True, fontSizePromille=80))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName16', 'bold and italic text', pygame.Color('black'), 500, 820, isBold=True, isItalic=True, fontSizePromille=80))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName10', 'or', pygame.Color('black'), 850, 300, rotation=40))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName11', 'rotation', pygame.Color('white'), 900, 400, rotation=80))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName12', 'can use any system font', pygame.Color('black'), 500, 340, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName13', 'like arial', pygame.Color('black'), 500, 420, fontName='arial', fontSizePromille=80))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName14', 'or couriernew', pygame.Color('black'), 500, 500, fontName='couriernew', fontSizePromille=80))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName15', 'most system fonts also have', pygame.Color('black'), 500, 580, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName16', 'bold text', pygame.Color('black'), 500, 660, isBold=True, fontSizePromille=80))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName17', 'italic text', pygame.Color('black'), 500, 740, isItalic=True, fontSizePromille=80))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLabel', 'lblName18', 'bold and italic text', pygame.Color('black'), 500, 820, isBold=True, isItalic=True, fontSizePromille=80))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowLabel', 'btnBack', 300,920,300,100, text='Click to go Back', fontSizePromille=50,onClick=self.handleClick))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowLabel', 'btnContinue', 700,920,300,100, text='Click to Continue', fontSizePromille=50,onClick=self.handleClick))
         
@@ -76,23 +81,40 @@ class testPygameElements():
         self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName1', 'the Line element', pygame.Color('black'), 500, 50, isBold=True))
         self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName2', 'has a start and end position', pygame.Color('black'), 500, 140, fontSizePromille=60))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line1', pygame.Color('black'), (200, 185), (800,185)))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName2', 'any color', pygame.Color('black'), 500, 220, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName3', 'any color', pygame.Color('black'), 500, 220, fontSizePromille=60))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line2', pygame.Color('blue'), (200, 265), (800,265)))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line3', pygame.Color('green'), (200, 280), (800,280)))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line4', pygame.Color('red'), (200, 295), (800,295)))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName2', 'any width', pygame.Color('black'), 500, 340, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName4', 'any width', pygame.Color('black'), 500, 340, fontSizePromille=60))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line5', pygame.Color('black'), (200, 375), (200,410),widthLine=1))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line6', pygame.Color('black'), (300, 375), (300,410),widthLine=2))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line7', pygame.Color('black'), (400, 375), (400,410),widthLine=4))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line8', pygame.Color('black'), (500, 375), (500,410),widthLine=8))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line9', pygame.Color('black'), (600, 375), (600,410),widthLine=16))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line10', pygame.Color('black'), (700, 375), (700,410),widthLine=32))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName2', 'any alphaValue', pygame.Color('black'), 500, 450, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowLine', 'lblName5', 'any alphaValue', pygame.Color('black'), 500, 450, fontSizePromille=60))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line11', pygame.Color('black'), (200, 500), (800,500), alphaValue=255))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line12', pygame.Color('black'), (200, 520), (800,520), alphaValue=200))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line13', pygame.Color('black'), (200, 540), (800,540), alphaValue=150))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line14', pygame.Color('black'), (200, 560), (800,560), alphaValue=100))
         self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'line15', pygame.Color('black'), (200, 580), (800,580), alphaValue=50))
+        colorsToChoseFrom=['black', 'blue', 'white', 'red']
+        insideTop=50
+        insideBottom=800
+        insideLeft=10
+        insideRight=180
+        alphaMinimum=50
+        alphaMaximum=255
+        for counter in range(0,40):
+            top1=random.randint(insideTop,insideBottom)
+            left1=random.randint(insideLeft,insideRight)
+            top2=random.randint(insideTop,insideBottom)
+            left2=random.randint(insideLeft,insideRight)
+            width=random.randint(1,18)
+            colorNr=random.randint(0, len(colorsToChoseFrom)-1)
+            color=pygame.Color(colorsToChoseFrom[colorNr])
+            alphaValue=random.randint(alphaMinimum,alphaMaximum)
+            self.renderObjects.append(Line(self.windowSurface, 'screenShowLine', 'lineAuto'+str(counter), color, (left1, top1), (left2,top2), alphaValue=alphaValue,widthLine=width))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowLine', 'btnBack', 300,920,300,100, text='Click to go Back', fontSizePromille=50,onClick=self.handleClick))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowLine', 'btnContinue', 700,920,300,100, text='Click to Continue', fontSizePromille=50,onClick=self.handleClick))
         
@@ -112,8 +134,8 @@ class testPygameElements():
         self.renderObjects.append(Square(self.windowSurface, 'screenShowSquare', 'sq10',pygame.Color('black'), 400, 550, 100,100, widthBorder=10))
         self.renderObjects.append(Square(self.windowSurface, 'screenShowSquare', 'sq11',pygame.Color('black'), 600, 550, 100,100, widthBorder=20))
         self.renderObjects.append(Square(self.windowSurface, 'screenShowSquare', 'sq12',pygame.Color('black'), 800, 550, 100,100, widthBorder=40))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowSquare', 'lblName3', 'You can also round up each corner', pygame.Color('black'), 500, 650, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowSquare', 'lblName4', 'by a specific amount', pygame.Color('black'), 500, 700, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowSquare', 'lblName5', 'You can also round up each corner', pygame.Color('black'), 500, 650, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowSquare', 'lblName6', 'by a specific amount', pygame.Color('black'), 500, 700, fontSizePromille=60))
         self.renderObjects.append(Square(self.windowSurface, 'screenShowSquare', 'sq13',pygame.Color('black'), 200, 800, 100,100, widthBorder=10,borderTopLeft=20 ))
         self.renderObjects.append(Square(self.windowSurface, 'screenShowSquare', 'sq14',pygame.Color('black'), 400, 800, 100,100, widthBorder=20,borderTopLeft=60, borderTopRight=20))
         self.renderObjects.append(Square(self.windowSurface, 'screenShowSquare', 'sq15',pygame.Color('black'), 600, 800, 100,100, borderTopLeft=20, borderBottomLeft=20))
@@ -141,39 +163,37 @@ class testPygameElements():
         self.renderObjects.append(Button(self.windowSurface, 'screenShowEllipse', 'btnContinue', 700,920,300,100, text='Click to Continue', fontSizePromille=50,onClick=self.handleClick))
         
         self.renderObjects.append(Label(self.windowSurface, 'screenShowImage', 'lblName1', 'the Image element', pygame.Color('black'), 500, 50, isBold=True))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowImage', 'lblName2', 'Any Size or AlphaValue', pygame.Color('black'), 500, 180, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowImage', 'lblName2', 'Any Size or AlphaValue or Rotation', pygame.Color('black'), 500, 180, fontSizePromille=60))
         self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img1', 'someimage.png', 200, 250, 100,100))
         self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img2', 'someimage.png', 400, 250, 20,100))
         self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img3', 'someimage.png', 600, 250, 100,20))
         self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img4', 'someimage.png', 800, 250, 20,20))
-        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img5', 'someimage.png', 200, 350, 100,100, alphaValue=200))
-        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img6', 'someimage.png', 300, 350, 100,100, alphaValue=150))
-        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img7', 'someimage.png', 400, 350, 100,100, alphaValue=100))
-        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img8', 'someimage.png', 500, 350, 100,100, alphaValue=50))
-        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img9', 'someimage.png', 600, 350, 100,100, alphaValue=20))
-        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img10', 'someimage.png', 700, 350, 100,100, alphaValue=10))
-        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img11', 'someimage.png', 800, 350, 100,100, alphaValue=5))
+        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img5', 'someimage.png', 200, 350, 100,100, alphaValue=200, rotation=0))
+        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img6', 'someimage.png', 300, 350, 100,100, alphaValue=150, rotation=20))
+        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img7', 'someimage.png', 400, 350, 100,100, alphaValue=100, rotation=40))
+        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img8', 'someimage.png', 500, 350, 100,100, alphaValue=50, rotation=60))
+        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img9', 'someimage.png', 600, 350, 100,100, alphaValue=20, rotation=80))
+        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img10', 'someimage.png', 700, 350, 100,100, alphaValue=10, rotation=100))
+        self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img11', 'someimage.png', 800, 350, 100,100, alphaValue=5, rotation=120))
         self.renderObjects.append(Label(self.windowSurface, 'screenShowImage', 'lblName3', 'You can elect to use the unstretched image', pygame.Color('black'), 500, 425, fontSizePromille=60))
         self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img12', 'someimage.png', 500, 570, 500,500, stretch=False))
         self.renderObjects.append(Label(self.windowSurface, 'screenShowImage', 'lblName4', 'when image is not found, it shows a placeholder', pygame.Color('black'), 500, 710, fontSizePromille=60))
         self.renderObjects.append(Image(self.windowSurface, 'screenShowImage', 'img13', 'doesnotexist.png', 500, 800, 100,100))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowImage', 'btnBack', 300,920,300,100, text='Click to go Back', fontSizePromille=50,onClick=self.handleClick))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowImage', 'btnContinue', 700,920,300,100, text='Click to Continue', fontSizePromille=50,onClick=self.handleClick))
-#self, blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  
-#verticalSizePromille=100, colorNormal=(190,190,190), colorHasFocus=(190,255,190),colorMouseOver=(190,190,255),colorMouseDown=(255,190,190), value=None, 
-#alphaValue=255, hasFocus=False, visible=True, onClick=None, text='button', enabled=True, sysFont=True, fontName='timesnewroman', fontSizePromille=80, antiAlias=True):
+
         self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName1', 'the Button element', pygame.Color('black'), 500, 50, isBold=True))
-        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest', 500, 150, 100,50, fontSizePromille=30, onClick=self.handleClick))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName1', 'the Button element combines a Square and Label', pygame.Color('black'), 500, 200, isBold=True,fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName2', 'Any Size or Color or AlphaValue', pygame.Color('black'), 500, 250, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName3', 'if it has tab focus, it is greenish and bold', pygame.Color('black'), 500, 300, isBold=True,fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName4', 'if the mouse is over it, it is blueish and italic', pygame.Color('black'), 500, 350, isBold=True,fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName5', 'if the mousebutton is down (but not up yet),', pygame.Color('black'), 500, 400, isBold=True,fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName6', 'it is redish and bold and italic', pygame.Color('black'), 500, 450, isBold=True,fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName7', '(note: the bold and italic only works on system fonts)', pygame.Color('black'), 500, 550, isItalic=True,fontSizePromille=50))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName8', 'press enter (when it has tab focus) or click on it', pygame.Color('black'), 500, 650, isBold=True,fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName9', 'to run a user defined function, if any', pygame.Color('black'), 500, 700, isBold=True,fontSizePromille=60))
-        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest', 200, 800, 100,50, colorNormal=pygame.Color('pink'), colorHasFocus=(255,255,203),colorMouseOver=(255,192,255),colorMouseDown=pygame.Color('pink'),onClick=self.handleClick, fontSizePromille=20, text='Rounded'))
+        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest1', 500, 150, 100,50, fontSizePromille=30, onClick=self.handleClick))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName2', 'the Button element combines a Square and Label', pygame.Color('black'), 500, 200, isBold=True,fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName3', 'Any Size or Color or AlphaValue', pygame.Color('black'), 500, 250, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName4', 'if it has tab focus, it is greenish and bold', pygame.Color('black'), 500, 300, isBold=True,fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName5', 'if the mouse is over it, it is blueish and italic', pygame.Color('black'), 500, 350, isBold=True,fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName6', 'if the mousebutton is down (but not up yet),', pygame.Color('black'), 500, 400, isBold=True,fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName7', 'it is redish and bold and italic', pygame.Color('black'), 500, 450, isBold=True,fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName8', '(note: the bold and italic only works on system fonts)', pygame.Color('black'), 500, 550, isItalic=True,fontSizePromille=50))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName9', 'press enter (when it has tab focus) or click on it', pygame.Color('black'), 500, 650, isBold=True,fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowButton', 'lblName10', 'to run a user defined function, if any', pygame.Color('black'), 500, 700, isBold=True,fontSizePromille=60))
+        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest2', 200, 800, 100,50, colorNormal=pygame.Color('pink'), colorHasFocus=(255,255,203),colorMouseOver=(255,192,255),colorMouseDown=pygame.Color('pink'),onClick=self.handleClick, fontSizePromille=20, text='Rounded'))
         # do some trickery to get the square to be rounded how we want it:
         # select latest addition, then
         self.renderObjects[len(self.renderObjects)-1].buttonNormal=Square(self.windowSurface, 'screenShowButton', 'btnTest', pygame.Color('grey'), 200, 800,100,50, 0, 10,20,30, 40,255, True)
@@ -181,13 +201,13 @@ class testPygameElements():
         self.renderObjects[len(self.renderObjects)-1].buttonMouseOver=Square(self.windowSurface, 'screenShowButton', 'btnTest', pygame.Color('darkgrey'), 200, 800,100,50, 0,  10,20,30, 40,255, True)
         self.renderObjects[len(self.renderObjects)-1].buttonMouseDown=Square(self.windowSurface, 'screenShowButton', 'btnTest', pygame.Color('red'), 200,800,100,50,  0,  10,20,30, 40,255, True)
         # continue with normal stuff
-        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest', 400, 800, 130,60, fontSizePromille=50, onClick=self.handleClick, fontName='couriernew'))
-        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest', 600, 800, 140,55, fontSizePromille=38, onClick=self.handleClick, text='Ballpointprint.ttf', sysFont=False, fontName='Ballpointprint.ttf'))
-        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest', 800, 800, 150,75, fontSizePromille=24, onClick=self.handleClick, text='Press Me!', alphaValue=50))
+        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest3', 400, 800, 130,60, fontSizePromille=50, onClick=self.handleClick, fontName='couriernew'))
+        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest4', 600, 800, 140,55, fontSizePromille=38, onClick=self.handleClick, text='Ballpointprint.ttf', sysFont=False, fontName='Ballpointprint.ttf'))
+        self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnTest5', 800, 800, 150,75, fontSizePromille=24, onClick=self.handleClick, text='Press Me!', alphaValue=50))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnBack', 300,920,300,100, text='Click to go Back', fontSizePromille=50,onClick=self.handleClick))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowButton', 'btnContinue', 700,920,300,100, text='Click to Continue', fontSizePromille=50,onClick=self.handleClick))
         
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName2', 'the CheckBox element', pygame.Color('black'), 500, 50, isBold=True))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName1', 'the CheckBox element', pygame.Color('black'), 500, 50, isBold=True))
         self.renderObjects.append(CheckBox(self.windowSurface, 'screenShowCheckBox', 'checkOne', 400, 150, 50,50, alphaValue=255, widthMargin=10 , onClick=self.handleClick))
         self.renderObjects.append(CheckBox(self.windowSurface, 'screenShowCheckBox', 'checkTwo', 400, 250, 50,50, alphaValue=255, widthMargin=10 , onClick=self.handleClick, value=False))
         self.renderObjects.append(CheckBox(self.windowSurface, 'screenShowCheckBox', 'checkThree', 400, 350, 50,50, alphaValue=255, widthMargin=10 , onClick=self.handleClick))
@@ -195,27 +215,23 @@ class testPygameElements():
         self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'labelTwo', 'Value=False', pygame.Color('black'), 550, 250, fontSizePromille=50))
         self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'labelThree', 'Value=True', pygame.Color('black'), 550, 350, fontSizePromille=50))
         self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName2', 'you can tab and shift-tab over them', pygame.Color('black'), 550, 500, fontSizePromille=50))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName2', 'press SPACEBAR when it has tabfocus, or click', pygame.Color('black'), 550, 550, fontSizePromille=50))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName2', 'to toggle value and run a user defined function, if any', pygame.Color('black'), 550, 600, fontSizePromille=50))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName2', 'you can tweak size, color, borderWidth, alphaValue', pygame.Color('black'), 550, 650, fontSizePromille=50))
-        
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName3', 'press SPACEBAR when it has tabfocus, or click', pygame.Color('black'), 550, 550, fontSizePromille=50))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName4', 'to toggle value and run a user defined function, if any', pygame.Color('black'), 550, 600, fontSizePromille=50))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowCheckBox', 'lblName5', 'you can tweak size, color, borderWidth, alphaValue', pygame.Color('black'), 550, 650, fontSizePromille=50))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowCheckBox', 'btnBack', 300,920,300,100, text='Click to go Back', fontSizePromille=50,onClick=self.handleClick))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowCheckBox', 'btnContinue', 700,920,300,100, text='Click to Continue', fontSizePromille=50,onClick=self.handleClick))
         
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName3', 'the InputBox element', pygame.Color('black'), 500, 50, isBold=True))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName1', 'the InputBox element', pygame.Color('black'), 500, 50, isBold=True))
         self.renderObjects.append(InputBox(self.windowSurface, 'screenShowInputBox', 'ipbName1', 'Type Here', pygame.Color('brown'), 500, 175, False, 'Ballpointprint.ttf', onClick=self.handleClick))        
         self.renderObjects.append(InputBox(self.windowSurface, 'screenShowInputBox', 'ipbName2', 'Or Here', pygame.Color('brown'), 500, 300, onClick=self.handleClick))  
         self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'Any Size or Color or AlphaValue', pygame.Color('black'), 500, 400, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'You can type in the InputBox if it has tab focus', pygame.Color('black'), 500, 450, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'Use tab and shift tab or click to give it tab focus', pygame.Color('black'), 500, 500, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'you can use backspace', pygame.Color('black'), 500, 550, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'and type wëìçrd letters (if the font has it, most sys fonts do)', pygame.Color('black'), 500, 600, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'it has a maximum size you can set', pygame.Color('black'), 500, 650, fontSizePromille=60))
-        
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'it can also copy text to clipboard with ctrl-c', pygame.Color('black'), 500, 750, fontSizePromille=60))
-        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName2', 'it can receive text from clipboard with ctrl-v', pygame.Color('black'), 500, 800, fontSizePromille=60))
-        
-        
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName3', 'You can type in the InputBox if it has tab focus', pygame.Color('black'), 500, 450, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName4', 'Use tab and shift tab or click to give it tab focus', pygame.Color('black'), 500, 500, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName5', 'you can use backspace', pygame.Color('black'), 500, 550, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName6', 'and type wëìçrd letters (if the font has it, most sys fonts do)', pygame.Color('black'), 500, 600, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName7', 'it has a maximum size you can set', pygame.Color('black'), 500, 650, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName8', 'it can also copy text to clipboard with ctrl-c', pygame.Color('black'), 500, 750, fontSizePromille=60))
+        self.renderObjects.append(Label(self.windowSurface, 'screenShowInputBox', 'lblName9', 'it can receive text from clipboard with ctrl-v', pygame.Color('black'), 500, 800, fontSizePromille=60))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowInputBox', 'btnBack', 300,920,300,100, text='Click to go Back', fontSizePromille=50,onClick=self.handleClick))
         self.renderObjects.append(Button(self.windowSurface, 'screenShowInputBox', 'btnContinue', 700,920,300,100, text='Click to go to begin', fontSizePromille=50,onClick=self.handleClick))
         

@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 import os
+import sys
 import pygame
 
 class Button():
     def __init__(self, blitToSurface=None, gameState='', name='', horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  
 verticalSizePromille=100, colorNormal=(190,190,190), colorHasFocus=(190,255,190),colorMouseOver=(190,190,255),colorMouseDown=(255,190,190), value=None, 
 alphaValue=255, hasFocus=False, visible=True, onClick=None, text='button', enabled=True, sysFont=True, fontName='timesnewroman', fontSizePromille=80, antiAlias=True):
+       
+        
         self.type='button'
         self.blitToSurface=blitToSurface
         self.gameState=gameState
@@ -529,7 +532,7 @@ hasFocus=False, onClick=None, maxSize=15):
 class Image():
     def __init__(self, blitToSurface=None, gameState='', name='', fileName='', 
 horizontalMiddlePromille=500, verticalMiddlePromille=500, horizontalSizePromille=500,  verticalSizePromille=500, 
-stretch=True, alphaValue=255, visible=True):
+rotation=0, stretch=True, alphaValue=255, visible=True):
 
         self.type='image'
         self.blitToSurface=blitToSurface
@@ -540,6 +543,7 @@ stretch=True, alphaValue=255, visible=True):
         self.verticalMiddlePromille=verticalMiddlePromille
         self.horizontalSizePromille=horizontalSizePromille
         self.verticalSizePromille=verticalSizePromille
+        self.rotation=rotation
         self.stretch=stretch
         self.alphaValue=alphaValue        
         self.visible=visible
@@ -552,26 +556,33 @@ stretch=True, alphaValue=255, visible=True):
         if os.path.isfile(fileName): # load from same place as executable
             self.imageRaw=pygame.image.load(fileName)
         else:
-            if os.path.isdir('images'): # or, if that did not work: from the 'images' folder
-                if os.path.isfile(os.path.join('images' , fileName)):
-                    self.imageRaw=pygame.image.load(os.path.join('images' , fileName))
-        if self.imageRaw==None: # oh no! no matching file was found, ehm.. just show a grey box with a red cross in it, and tell the user the file is missing
-            print(f"warning: Could not load image {fileName}")
-            self.screenWidth=self.blitToSurface.get_size()[0]
-            self.screenHeight=self.blitToSurface.get_size()[1]
-            
-            self.horizontalMiddle=int((self.screenWidth/1000.0)*self.horizontalMiddlePromille)
-            self.verticalMiddle=int((self.screenHeight/1000.0)*self.verticalMiddlePromille)
-            
-            self.width=int((self.screenWidth/1000.0)*self.horizontalSizePromille)
-            self.height=int((self.screenHeight/1000.0)*self.verticalSizePromille)
+            if os.path.isdir('images') and os.path.isfile(os.path.join('images' , fileName)):
+                self.imageRaw=pygame.image.load(os.path.join('images' , fileName))
+            else:
+                parts=os.path.abspath(__file__+"/../..") # take the path this very py file is in now (os dependant!), and drop the last 2 items (the pygameElements name and folder it is in)
+                parts=os.path.join(parts , 'pygameElementsTest') # then, at that place, add the pygameElementsTest folder 
+                folder=os.path.join(parts , 'images') # inside that: there should be a images folder
+                fileLocation=os.path.join(folder , fileName) # adding the filename required, should be the fileLocation
+                if os.path.isdir(folder) and os.path.isfile(fileLocation): # so if that folder exist: and the file exist as well
+                    self.imageRaw = pygame.image.load(fileLocation) # use it
+                else:   # ok give up, just take timesnewroman   
+                    print(f"warning: Could not load image {fileName}")
+                    # lets make a cross ourselves
+                    self.screenWidth=self.blitToSurface.get_size()[0]
+                    self.screenHeight=self.blitToSurface.get_size()[1]
+                    
+                    self.horizontalMiddle=int((self.screenWidth/1000.0)*self.horizontalMiddlePromille)
+                    self.verticalMiddle=int((self.screenHeight/1000.0)*self.verticalMiddlePromille)
+                    
+                    self.width=int((self.screenWidth/1000.0)*self.horizontalSizePromille)
+                    self.height=int((self.screenHeight/1000.0)*self.verticalSizePromille)
 
-            self.imageRaw=pygame.Surface((self.width, self.height),pygame.SRCALPHA)
-            self.imageRaw.set_alpha(128)          
-            self.imageRaw.fill(pygame.Color('grey'))
-            pygame.draw.line(self.imageRaw,pygame.Color('red'), (0,0),(self.width, self.height), 3)
-            pygame.draw.line(self.imageRaw,pygame.Color('red'), (self.width,0),(0, self.height), 3)
-            self.imageRawRect=self.imageRaw.get_rect()
+                    self.imageRaw=pygame.Surface((self.width, self.height),pygame.SRCALPHA)
+                    self.imageRaw.set_alpha(128)          
+                    self.imageRaw.fill(pygame.Color('grey'))
+                    pygame.draw.line(self.imageRaw,pygame.Color('red'), (0,0),(self.width, self.height), 3)
+                    pygame.draw.line(self.imageRaw,pygame.Color('red'), (self.width,0),(0, self.height), 3)
+                    self.imageRawRect=self.imageRaw.get_rect()
 
         self.renderImage()
         
@@ -603,13 +614,25 @@ stretch=True, alphaValue=255, visible=True):
             self.imageRender.set_alpha(self.alphaValue)          
             self.imageRender.blit(self.imageRaw, (0,0))
         
+        if not self.rotation==0: # rotated image
+            self.imageRender=pygame.transform.rotate(self.imageRender, self.rotation) 
+            self.surfaceRect=self.imageRender.get_rect()
+            self.extraWidthBecauseRotation=self.surfaceRect.w-self.width
+            self.extraHeightBecauseRotation=self.surfaceRect.h-self.height
+            self.leftAfterRotation=int(self.left-(self.extraWidthBecauseRotation/2.0))
+            self.topAfterRotation=int(self.top-(self.extraHeightBecauseRotation/2.0))
+            self.leftTopRotated=(self.leftAfterRotation,self.topAfterRotation)
+        else:
+            self.leftTopRotated=self.leftTop
+        
     def resize(self, newSurface):
         self.blitToSurface=newSurface
         self.renderImage()
 	    
     def updateOnScreen(self):
         if self.visible:
-            self.blitToSurface.blit(self.imageRender, self.leftTop)
+            self.blitToSurface.blit(self.imageRender, (self.leftTopRotated))
+            
 
 class Ellipse():
     def __init__(self, blitToSurface=None, gameState='', name='', color=(255,255,255), 
@@ -766,7 +789,7 @@ startPosPromille=(0,0), endPosPromille=(1000,1000), widthLine=5, alphaValue=255,
 class Label():
     def __init__(self, blitToSurface=None, gameState='', name='', text='', colorText=(255,255,255),
 horizontalMiddlePromille=500, verticalMiddlePromille=500, sysFont=True, fontName='timesnewroman',
-fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=255, visible=True):
+fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=255, visible=True, rotation=0):
         self.type='label'
         self.blitToSurface=blitToSurface
         self.gameState=gameState
@@ -783,6 +806,7 @@ fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=2
         self.antiAlias=antiAlias
         self.alphaValue=alphaValue
         self.visible=visible
+        self.rotation=rotation
         
         self.createFont()
         self.renderText(self.text)
@@ -798,10 +822,19 @@ fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=2
             if os.path.isfile(self.fontName): # try loading it from the same location as the program 
                 self.basicFont = pygame.font.Font(self.fontName, self.fontSize) 
             else: # or, if that fails, perhaps its in the 'fonts' folder?
-                if os.path.isdir('fonts'):
-                    if os.path.isfile(os.path.join('fonts' , self.fontName)):
-                        self.basicFont = pygame.font.Font(os.path.join('fonts' , self.fontName), self.fontSize) 
-	
+                if os.path.isdir('fonts') and os.path.isfile(os.path.join('fonts' , self.fontName)):
+                    self.basicFont = pygame.font.Font(os.path.join('fonts' , self.fontName), self.fontSize) 
+                else: # well, perhaps its inside the test suite?
+                    parts=os.path.abspath(__file__+"/../..") # take the path this very py file is in now (os dependant!), and drop the last 2 items (the pygameElements name and folder it is in)
+                    parts=os.path.join(parts , 'pygameElementsTest') # then, at that place, add the pygameElementsTest folder 
+                    folder=os.path.join(parts , 'fonts') # inside that: there should be a fonts folder
+                    fileLocation=os.path.join(folder , self.fontName) # adding the fontName required, should be the fileLocation
+                    if os.path.isdir(folder) and os.path.isfile(fileLocation): # so if that folder exist: and the file exist as well
+                        self.basicFont = pygame.font.Font(fileLocation, self.fontSize) # use it
+                    else:   # ok give up, just take timesnewroman   
+                        print (f'warning: could not find {self.fontName}') 
+                        self.basicFont = pygame.font.SysFont('timesnewroman', self.fontSize, self.isBold, self.isItalic) 
+    
     def renderText(self, text):
         self.text=text
         
@@ -809,14 +842,26 @@ fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=2
         alphaImage = pygame.Surface(self.textRender.get_size(), pygame.SRCALPHA)
         alphaImage.fill((255, 255, 255, self.alphaValue))
         self.textRender.blit(alphaImage, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-        self.textWidth=self.textRender.get_rect()[2]
-        self.textHeight=self.textRender.get_rect()[3]
-        
+        self.left=self.textRender.get_rect()[0]
+        self.height=self.textRender.get_rect()[1]
+        self.width=self.textRender.get_rect()[2]
+        self.height=self.textRender.get_rect()[3]
         self.horizontalMiddle=int((self.screenWidth/1000.0)*self.horizontalMiddlePromille)
         self.verticalMiddle=int((self.screenHeight/1000.0)*self.verticalMiddlePromille)
-        
-        self.leftTop=(int(self.horizontalMiddle-(self.textWidth/2.0)),int(self.verticalMiddle-(self.textHeight/2.0)))
-
+        self.top=self.verticalMiddle-self.height/2.0
+        self.left=self.horizontalMiddle-self.width/2.0
+        self.leftTop=(int(self.horizontalMiddle-(self.width/2.0)),int(self.verticalMiddle-(self.height/2.0)))
+        if self.rotation==0:
+            self.leftTopRotated=self.leftTop
+        else:
+            self.textRender=pygame.transform.rotate(self.textRender, self.rotation) 
+            self.surfaceRect=self.textRender.get_rect()
+            self.extraWidthBecauseRotation=self.surfaceRect.w-self.width
+            self.extraHeightBecauseRotation=self.surfaceRect.h-self.height
+            self.leftAfterRotation=int(self.left-(self.extraWidthBecauseRotation/2.0))
+            self.topAfterRotation=int(self.top-(self.extraHeightBecauseRotation/2.0))
+            self.leftTopRotated=(self.leftAfterRotation,self.topAfterRotation)
+            
     def resize(self, newSurface):
         self.blitToSurface=newSurface
         self.createFont()
@@ -824,6 +869,6 @@ fontSizePromille=100, isBold=False, isItalic=False, antiAlias=True, alphaValue=2
 	    
     def updateOnScreen(self):
         if self.visible:
-            self.blitToSurface.blit(self.textRender, self.leftTop)
+            self.blitToSurface.blit(self.textRender, self.leftTopRotated)
 	
     
